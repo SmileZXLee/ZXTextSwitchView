@@ -29,22 +29,32 @@
 }
 #pragma mark - 初始化UI
 -(void)setUI{
-    self.view.backgroundColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
     ZXTextSwitchView *switchView = [ZXTextSwitchView textSwitchView];
     switchView.frame = CGRectMake(0, 100, ScreenW, BottomViewH);
     switchView.selectIndex = 3;
     switchView.selectedBacColor = [UIColor orangeColor];
     switchView.dataSource = self.switchArr;
-    [switchView setSelChangedBlock:^(NSUInteger selIndex, NSString *selText) {
-        NSLog(@"%@",[NSString stringWithFormat:@"SelectedIndex--%lu SelectedText--%@",selIndex,selText]);
-    }];
     [self.view addSubview:switchView];
+    
+    UILabel *msgLabel = [[UILabel alloc]init];
+    msgLabel.frame = CGRectMake(0, CGRectGetMaxY(switchView.frame) + 10, ScreenW, 20);
+    msgLabel.adjustsFontSizeToFitWidth = YES;
+    msgLabel.textColor = [UIColor redColor];
+    msgLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:msgLabel];
+    
+    [switchView setSelChangedBlock:^(NSUInteger selIndex, NSString *selText) {
+        msgLabel.text = [NSString stringWithFormat:@"SelectedIndex--%lu SelectedText--%@",selIndex,selText];
+    }];
 }
 #pragma mark - 设置数据
 -(void)setData{
-    [self.switchArr addObject:@"Man"];
-    [self.switchArr addObject:@"Woman"];
-    [self.switchArr addObject:@"Other"];
+    [self.switchArr addObject:@"Apple"];
+    [self.switchArr addObject:@"西红柿"];
+    [self.switchArr addObject:@"葡萄干"];
+    [self.switchArr addObject:@"甜哈密瓜"];
+    [self.switchArr addObject:@"菠萝蜜"];
     
 }
 #pragma mark - 懒加载

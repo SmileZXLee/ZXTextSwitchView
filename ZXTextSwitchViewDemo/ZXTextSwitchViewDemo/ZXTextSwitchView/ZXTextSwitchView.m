@@ -29,18 +29,14 @@
     CGFloat tempX = self.switchView.center.x;
     CGPoint translation = [recognizer translationInView:self.switchView.superview];
     //限制左右两边位置，避免越界
-    if(tempX < self.switchView.frame.size.width / 2 ){
-        //最左侧
+    if(tempX <= self.frame.size.width / self.dataSource.count / 2){
         if(translation.x < 0){
-            //左移 返回
-            return;
+            translation.x = 0;
         }
     }
-    if(tempX > self.frame.size.width - self.switchView.frame.size.width / 2){
-        //最右侧
+    if(tempX >= self.frame.size.width - (self.frame.size.width / self.dataSource.count / 2 )){
         if(translation.x > 0){
-            //右移 返回
-            return;
+            translation.x = 0;
         }
     }
     [self resetSwitchLabelFrameWithChangeX:translation.x];
