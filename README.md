@@ -2,7 +2,6 @@
 ## 预览
 ![Image text](http://www.zxlee.cn/ZXTextSwitchViewDemo.gif)
 
-***
 ## 初始化&偏好设置
 ```objective-c
 /**
